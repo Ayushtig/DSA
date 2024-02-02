@@ -1,0 +1,11 @@
+public class Recursion {
+    static int f(int n){
+        if(n<=1) return n;
+        int last=f(n-1);
+        int seclast=f(n-2);
+        return last+seclast;
+    }
+    public static void main(String[] args) {
+        System.out.println(f(3));
+    }
+}
