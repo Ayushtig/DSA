@@ -1,0 +1,17 @@
+import java.util.*;
+public class Recursion {
+    static void function(int i,int n){
+        if(i>n){
+            return;
+        }
+        function(i+1,n);
+        System.out.println(i);
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.print("enter n: ");
+        int n=sc.nextInt();
+        sc.close();
+        function(1,n);
+    }    
+}
