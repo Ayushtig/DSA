@@ -1,0 +1,24 @@
+public class Recursion {
+
+    public static void main(String[] args) {
+        int a[]={2, 13, 4, 1, 3, 6, 28};
+        int n=a.length-2;
+        print(a,n);
+    }
+    static void print(int a[],int n){
+        if(n<0){
+        for(int k:a){
+            System.out.println(k);    
+        }
+        return;
+    }
+        for(int i=0;i<n;i++){
+            if(a[i]>a[i+1]){
+                int temp=a[i];
+                a[i]=a[i+1];
+                a[i+1]=temp;
+            }
+        }
+        print(a,--n);
+    }
+}
