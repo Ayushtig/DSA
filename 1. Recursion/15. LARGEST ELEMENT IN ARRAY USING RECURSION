@@ -1,0 +1,11 @@
+public class Solution {
+    static int largestElement(int[] arr, int n) {
+        int max=0;
+        return print(arr,n-1,max);
+    }
+    static int print(int a[],int n,int max){
+        if(n<0) return max;
+        if(max<a[n]) max=a[n];
+        return print(a,--n,max);
+    }
+}
