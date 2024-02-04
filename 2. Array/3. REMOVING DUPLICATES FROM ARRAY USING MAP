@@ -1,0 +1,12 @@
+import java.util.*;
+public class Solution {
+    public static int removeDuplicates(int[] a,int n) {
+        Map<Integer, Integer> map = new HashMap<>();
+        return print(map,a,n-1);
+    }
+    static int print(Map<Integer,Integer> map,int a[],int n){
+        if(n<0)return map.size();
+        map.put(a[n],1);
+        return print(map,a,--n);
+    }
+}
