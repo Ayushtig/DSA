@@ -1,1 +1,52 @@
+import java.util.*;
+public class Solution {
+    public static int traffic(int n, int k, int []arr) {
+        Deque<Integer> dq=new ArrayDeque<>();
 
+int temp=k,j=0;
+
+int length=0;
+
+while(j<arr.length){
+
+if(temp>0){
+
+if(arr[j]==0){
+
+temp--;
+
+}
+
+dq.addLast(arr[j]);
+
+j++;
+
+}else if(arr[j]==1){
+
+dq.addLast(arr[j]);
+
+j++;
+
+}else{
+
+length=Math.max(length,dq.size());
+
+while(!dq.isEmpty() && dq.peekFirst()!=0){
+
+dq.pollFirst();
+
+}
+
+dq.pollFirst();
+
+temp++;
+
+}
+
+}
+
+length=Math.max(length,dq.size());
+
+return length;
+    }
+}
