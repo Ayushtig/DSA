@@ -1,0 +1,47 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static ArrayList<ArrayList<Integer>> zeroMatrix(ArrayList<ArrayList<Integer>> matrix, Integer n, Integer m) {
+    int a[][]=new int[n][m];
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            a[i][j]=matrix.get(i).get(j);
+        }
+    }
+    setZeroes(a);
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            matrix.get(i).set(j , a[i][j]);
+        }
+    }
+    return matrix;
+    }
+    static void setZeroes(int[][] a) {
+        int row[]=new int[a.length];
+        int col[]=new int[a[0].length];
+        for(int i=0;i<a.length;i++){
+            for(int j=0;j<a[0].length;j++){
+                if(a[i][j]==0){
+                    row[i]=1;
+                    col[j]=1;                    
+                }
+            }
+        }   
+        for(int i=0;i<a.length;i++){
+            if(row[i]==1){
+                for(int j=0;j<a[0].length;j++){
+                    a[i][j]=0;
+                }
+            }
+            else continue;
+        }
+        for(int j=0;j<a[0].length;j++){
+            if(col[j]==1){
+                for(int i=0;i<a.length;i++){
+                    a[i][j]=0;
+                }
+            }
+            else continue;
+        }
+    }
+}
