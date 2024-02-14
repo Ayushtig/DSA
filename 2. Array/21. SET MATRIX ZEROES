@@ -1,0 +1,30 @@
+class Solution {
+    public void setZeroes(int[][] a) {
+        int row[]=new int[a.length];
+        int col[]=new int[a[0].length];
+        for(int i=0;i<a.length;i++){
+            for(int j=0;j<a[0].length;j++){
+                if(a[i][j]==0){
+                    row[i]=1;
+                    col[j]=1;                    
+                }
+            }
+        }   
+        for(int i=0;i<a.length;i++){
+            if(row[i]==1){
+                for(int j=0;j<a[0].length;j++){
+                    a[i][j]=0;
+                }
+            }
+            else continue;
+        }
+        for(int j=0;j<a[0].length;j++){
+            if(col[j]==1){
+                for(int i=0;i<a.length;i++){
+                    a[i][j]=0;
+                }
+            }
+            else continue;
+        }
+    }
+}
