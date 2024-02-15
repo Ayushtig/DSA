@@ -1,0 +1,32 @@
+import java.util.*;
+public class Solution {
+    public static int[] spiralMatrix(int [][]mat) {
+        int n=mat.length;
+        int m=mat[0].length;
+        int left=0,top=0,right=m-1,bottom=n-1;
+        int ans[]=new int[n*m];
+        int l=0;
+        while (top <= bottom && left <= right) {
+            for (int i = left; i <= right; i++)
+                ans[l++]=mat[top][i];
+            top++;
+            for (int i = top; i <= bottom; i++)
+                ans[l++]=mat[i][right];
+            right--;
+            if (top <= bottom) {
+                for (int i = right; i >= left; i--)
+                    ans[l++]=mat[bottom][i];
+
+                bottom--;
+            }
+
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--)
+                    ans[l++]=mat[i][left];
+
+                left++;
+            }
+        }
+        return ans;
+    }
+}
