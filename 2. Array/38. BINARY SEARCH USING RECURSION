@@ -1,0 +1,19 @@
+public class Solution {
+    static int find(int a[],int start,int end,int target){
+        if(start>end) return -1;
+        int mid=(start+end)/2;
+        if(a[mid]==target){
+            return mid;
+        }
+        else if(target<a[mid]){
+            return find(a,0,mid-1,target);
+        }
+        else{
+            return find(a,mid+1,end,target);
+        }
+    }
+    public static int search(int []a, int target) {
+        int n=a.length;
+        return find(a,0,n-1,target);
+    }
+}
