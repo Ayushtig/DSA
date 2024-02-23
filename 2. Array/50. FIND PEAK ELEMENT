@@ -1,0 +1,22 @@
+import java.util.ArrayList;
+public class Solution {
+    public static int findPeakElement(ArrayList<Integer> a) {
+        int n=a.size();
+        int low=0;
+        int high=n-1;
+        if(n==1) return 0;
+        if(a.get(0)>a.get(1))return 0;
+        if(a.get(n-1)>a.get(n-2))return n-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(a.get(mid+1)<a.get(mid) && a.get(mid)>a.get(mid-1)) return mid;
+            if(a.get(low)<=a.get(mid)){
+                low=mid+1;
+            }
+            else{
+                high=mid-1;
+            }
+        }
+        return -1;
+    }
+}
