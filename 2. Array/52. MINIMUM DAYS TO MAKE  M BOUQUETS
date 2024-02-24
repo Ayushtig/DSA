@@ -1,0 +1,47 @@
+public class Solution {
+    static int min(int a[]){
+        int min=0;
+        for(int i=0;i<a.length;i++){
+            min=Math.min(min,a[i]);
+        }
+        return min;
+    }
+    static int max(int a[]){
+        int max=0;
+        for(int i=0;i<a.length;i++){
+            max=Math.max(max,a[i]);
+        }
+        return max;
+    }
+    public static boolean possible(int[] arr, int day, int m, int k) {
+        int n = arr.length; 
+        int cnt = 0;
+        int noOfB = 0;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] <= day) {
+                cnt++;
+            } else {
+                noOfB += (cnt / k);
+                cnt = 0;
+            }
+        }
+        noOfB += (cnt / k);
+        return noOfB >= m;
+    }
+    public static int roseGarden(int[] a, int k, int m) {
+        int n=a.length;
+        if(k*m>n) return -1;
+        int max=max(a);
+        int min=min(a);
+        int low=min;
+        int high=max;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(possible(a,mid,m,k)){
+                high=mid-1;
+            }
+            else low=mid+1;
+        }
+    return low;
+    }
+}
