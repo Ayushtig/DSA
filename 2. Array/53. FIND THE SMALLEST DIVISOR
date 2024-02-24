@@ -1,0 +1,38 @@
+import java.util.*;
+public class Solution {
+    static int min(int a[]){
+        int min=0;
+        for(int i=0;i<a.length;i++){
+            min=Math.min(min,a[i]);
+        }
+        return min;
+    }
+    static int max(int a[]){
+        int max=0;
+        for(int i=0;i<a.length;i++){
+            max=Math.max(max,a[i]);
+        }
+        return max;
+    }
+    static boolean cal(int a[],int mid,int target){
+        int count=0;
+        for(int i=0;i<a.length;i++){
+            count+=Math.ceil((double)a[i]/mid);
+        }
+        if(count<=target)return true;
+        else return false;
+    } 
+    public static int smallestDivisor(int a[], int target) {
+        int n=a.length;
+        int high=max(a);
+        int low=min(a);
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(cal(a,mid,target)){
+                high=mid-1;
+            }
+            else low=mid+1;
+        }
+        return low;
+    }
+}
