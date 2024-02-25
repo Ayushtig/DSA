@@ -1,0 +1,29 @@
+import java.util.*;
+public class Solution {
+    static boolean cal(int a[],int mid, int k){
+        int count=1;
+        int prev=a[0];
+        for(int i=1;i<a.length;i++){
+            if(a[i]-prev>=mid){
+                prev=a[i];
+                count++;
+            }
+        }
+            if(count>=k)return true;
+            else return false;
+    }
+    public static int aggressiveCows(int []a, int k) {
+        Arrays.sort(a);
+        int n=a.length;
+        int low=1;
+        int high=a[n-1]-a[0];
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(cal(a,mid,k)){
+                low=mid+1;
+            }
+            else high=mid-1;
+        }
+        return high;
+    }
+}
