@@ -1,0 +1,37 @@
+import java.util.*;
+public class Solution {
+    static double max(int a[]){
+        double max=0;
+        for(int i=1;i<a.length;i++){
+            max=Math.max(max,(double)(a[i]-a[i-1]));
+        }
+        return max;
+    }
+    static boolean cal(int a[],double mid,int k){
+        int n=a.length;
+        int count=0;
+        for(int i=1;i<n;i++){
+            int inBetween=(int)((a[i]-a[i-1])/mid);
+            if((a[i]-a[i-1])==(mid*inBetween)){
+                inBetween--;
+            }
+            count+=inBetween;
+        }
+        if(count>k)return true;
+        else return false;
+    }
+    public static double MinimiseMaxDistance(int []a, int k){
+        int n=a.length;
+        double low=0;
+        double high=max(a);
+        double diff=1e-6;
+        while(high-low>diff){
+            double mid=(low+high)/2.0;
+            if(cal(a,mid,k)){
+                low=mid;
+            }
+            else high=mid;
+        }
+        return high;
+    }
+}
