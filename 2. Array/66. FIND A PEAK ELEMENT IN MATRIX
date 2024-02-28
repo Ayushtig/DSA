@@ -1,0 +1,36 @@
+public class Solution {
+    static int max(int a[][],int n,int m,int mid){
+        int max=-1;
+        int index=-1;
+        for(int i=0;i<n;i++){
+            if(a[i][mid]>max){
+                max=a[i][mid];
+                index=i;
+            }
+        }
+            return index;
+    }
+    public static int[] findPeakGrid(int [][]a){
+        int n=a.length;
+        int m=a[0].length;
+        int b[]=new int[2];
+        int low=0;
+        int high=m-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            int max=max(a,n,m,mid);
+            int left=mid-1>=0?a[max][mid-1]:-1;
+            int right=mid+1<m?a[max][mid+1]:-1;
+            if(a[max][mid]>left && a[max][mid]>right){
+            b[0]=max;
+            b[1]=mid;
+            return b;
+            }
+            else if(a[max][mid]<left)high=mid-1;
+            else low=mid+1;
+        }
+        b[0]=-1;
+        b[1]=-1;
+        return b;
+    }
+}
