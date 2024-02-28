@@ -1,0 +1,30 @@
+import java.util.*;
+public class Solution {
+    static boolean binary(int a[],int low,int high,int k){
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(a[mid]==k)return true;
+            if(a[mid]>k){
+                high=mid-1;
+            }
+            else low=mid+1;
+        }
+        return false;
+    }
+    public static boolean searchElement(int [][]a, int target) {
+        int n=a.length;
+        int m=a[0].length;
+        int ans=0;
+        for(int i=0;i<n;i++){
+            if(a[i][0]<=target && target<=a[i][m-1]){
+                if(binary(a[i],0,m-1,target)){
+                    ans=1;
+                    break;
+                }
+                else ans=0;
+            }
+        }
+        if(ans==0)return false;
+        else return true;  
+    }
+}
