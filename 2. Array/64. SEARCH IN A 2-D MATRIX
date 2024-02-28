@@ -1,0 +1,30 @@
+import java.util.ArrayList;
+public class Solution {
+    static boolean binary(ArrayList<Integer> a,int low,int high,int k){
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(a.get(mid)==k)return true;
+            if(a.get(mid)>k){
+                high=mid-1;
+            }
+            else low=mid+1;
+        }
+        return false;
+    }
+    static boolean searchMatrix(ArrayList<ArrayList<Integer>> a, int target) {
+        int n=a.size();
+        int m=a.get(0).size();
+        int ans=0;
+        for(int i=0;i<n;i++){
+            if(a.get(i).get(0)<=target && target<=a.get(i).get(m-1)){
+                if(binary(a.get(i),0,m-1,target)){
+                    ans=1;
+                    break;
+                }
+                else ans=0;
+            }
+        }
+        if(ans==0)return false;
+        else return true;
+    }
+}
