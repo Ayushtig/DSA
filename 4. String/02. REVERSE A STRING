@@ -1,0 +1,77 @@
+public class Solution
+
+{
+
+public static String reverseString(String str)
+
+{
+
+//Write your code here
+
+if (str == null || str.length() == 0)
+
+{
+
+return str;
+
+}
+
+StringBuilder ans = new StringBuilder();
+
+if (str.length() == 1 && str.charAt(0) == ' ')
+
+{
+
+return ans.toString();
+
+}
+
+int start = str.length() - 1;
+
+while (start >= 0)
+
+{
+
+if (str.charAt(start) == ' ')
+
+{
+
+start--;
+
+}
+
+else
+
+{
+
+if (ans.length() > 0)
+
+{
+
+ans.append(" ");
+
+}
+
+int j = start;
+
+while (j >= 0 && str.charAt(j) != ' ')
+
+{
+
+j--;
+
+}
+
+ans.append(str.substring(j + 1, start + 1));
+
+start = j;
+
+}
+
+}
+
+return ans.toString();
+
+}
+
+}
