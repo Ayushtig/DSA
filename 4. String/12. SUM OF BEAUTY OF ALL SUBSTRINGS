@@ -1,0 +1,30 @@
+import java.util.*;
+import java.util.HashMap;
+public class Solution {
+   public static int sumOfBeauty(String s) {
+        int right = s.length()-1;
+        int sum = 0;
+        for(int left = 0; left < s.length()-1; left++){
+            int[] arr = new int[26];
+            for(int i = left; i <= right; i++){
+                arr[s.charAt(i) - 'a']++;
+            }
+            int end = right;
+            while(end > left+1){      
+                int maxFreq = Integer.MIN_VALUE;
+                int minFreq = Integer.MAX_VALUE;
+                for(int i = 0; i < 26; i++){
+                    maxFreq = Math.max(maxFreq, arr[i]);
+                    if(arr[i] != 0){
+                        minFreq = Math.min(minFreq, arr[i]);
+                    }
+                }
+                int beauty = maxFreq - minFreq;
+                sum += beauty;
+                arr[s.charAt(end) - 'a']--;
+                end--;
+            }
+        }
+        return sum;
+    }
+}
