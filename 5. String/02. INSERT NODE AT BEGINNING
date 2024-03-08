@@ -1,0 +1,9 @@
+public class Solution
+{
+    public static Node insertAtFirst(Node head, int val) {
+        Node temp=new Node(val);
+        temp.next=head;
+        head=temp;
+        return head;
+    }
+}
