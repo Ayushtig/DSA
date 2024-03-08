@@ -1,0 +1,12 @@
+public class Solution {
+    public static Node constructLL(int []a) {
+        Node head=new Node(a[0]);
+        Node mover=head;
+        for(int i=1;i<a.length;i++){
+            Node temp=new Node(a[i]);
+            mover.next=temp;
+            mover=temp;
+        }
+        return head;
+    }
+}
