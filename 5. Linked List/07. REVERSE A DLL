@@ -1,0 +1,17 @@
+import java.util.*;
+public class Solution
+{
+    public static Node reverseDLL(Node head)
+    {
+        if(head==null || head.next==null)return head;
+        Node temp=head;
+        Node mover=null;
+        while(temp!=null){
+            mover=temp.prev;
+            temp.prev=temp.next;
+            temp.next=mover;
+            temp=temp.prev;
+        }
+    return mover.prev;
+    }
+}
