@@ -1,0 +1,31 @@
+public class Solution
+{
+    static Node cal(Node head){
+        Node slow=head;
+        Node fast=head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            if(slow==fast){
+                slow=head;
+                while(slow!=fast){
+                    slow=slow.next;
+                    fast=fast.next;
+                }
+                return slow;
+            }
+        }
+        return null;
+    }
+    public static int lengthOfLoop(Node head) {
+        int count=1;
+        Node start=cal(head);
+        if(start==null)return 0;
+        Node temp=start;
+        while(temp.next!=start){
+            count++;
+            temp=temp.next;
+        }
+        return count;
+    }
+}
