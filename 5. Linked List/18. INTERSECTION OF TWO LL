@@ -1,0 +1,16 @@
+public class Solution {
+    public static int findIntersection(Node list1, Node list2) {
+    Node firstTemp = list1;
+    while (firstTemp  != null) {
+      Node temp = list2;
+      while (temp != null) {
+        if (firstTemp  == temp) {
+          return firstTemp .data;
+        }
+        temp = temp.next;
+      }
+      firstTemp = firstTemp .next;
+    }
+    return -1;
+    }
+}
