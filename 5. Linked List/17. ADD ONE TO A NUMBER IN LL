@@ -1,0 +1,48 @@
+import java.util.* ;
+public class Solution {
+	static Node reverse(Node head){
+		Node temp=head;
+		List<Integer> a = new ArrayList<>();
+        while(temp!=null){
+            a.add(temp.data); 
+            temp=temp.next;
+       }
+       temp=head;
+       int n=a.size();
+       while(n!=0){
+           temp.data=a.get(n-1);
+           temp=temp.next;
+           n--;
+       }
+	   return head;
+	}
+	public static Node addOne(Node head) {
+		Node temp=reverse(head);
+       	int carry=0;
+       	int extra=0;
+       	if(head.data<9){
+	   	    head.data=head.data+1;
+	   	    extra=1;
+       	}
+	   	while(temp!=null && extra!=1){
+		   if(temp.data==9 && temp.next!=null){
+			   temp.data=0;
+			   carry=1;
+		   }
+		   else if(temp.data==9 && temp.next==null){
+			   temp.data=0;
+			   Node mover=new Node(1);
+			   temp.next=mover;
+			   carry=0;
+		   }
+		   else{
+		       temp.data+=carry;
+		       carry=0;
+		   }
+		   if(carry==0)break;
+		   temp=temp.next;
+	   	}
+		reverse(head);
+		return head;
+	}
+}
