@@ -1,0 +1,19 @@
+public class Solution {
+    public static Node deleteAllOccurrences(Node head, int k) {
+        Node temp=head;
+        while(temp!=null){
+            if(temp.data==k){
+                if(temp==head){
+                    head=temp.next;
+                }
+                Node prevN=temp.prev;
+                Node nextN=temp.next;
+                if(nextN!=null) nextN.prev=prevN;
+                if(prevN!=null) prevN.next=nextN;
+                temp=nextN;
+            }
+            else temp=temp.next;
+        }
+        return head;
+    }
+}
