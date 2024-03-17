@@ -1,0 +1,15 @@
+public class Solution {
+    public static Node uniqueSortedList(Node head) {
+        Node temp=head;
+        while(temp!=null && temp.next!=null){
+            Node mover=temp.next;
+            while(mover!=null && mover.data==temp.data){
+                Node dummy=mover;
+                mover=mover.next;
+            }
+            temp.next=mover;
+            temp=temp.next;
+        }
+        return head;
+    }
+}
