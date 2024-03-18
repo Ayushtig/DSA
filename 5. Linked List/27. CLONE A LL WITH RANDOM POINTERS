@@ -1,0 +1,30 @@
+public class Solution {
+    public static Node cloneLL(Node head) {
+        Node temp=head;
+        while(temp!=null){
+            Node newN=new Node(temp.data);
+            newN.next=temp.next;
+            temp.next=newN;
+            temp=temp.next.next;
+        }
+        temp=head;
+        while(temp!=null){
+            if(temp.random!=null){
+                temp.next.random=temp.random.next;
+            }
+            temp=temp.next.next;
+        }
+        Node dummy=new Node(0);
+        Node itr=head;
+        temp=dummy;
+        Node fast;
+        while(itr!=null){
+            fast=itr.next.next;
+            temp.next=itr.next;
+            itr.next=fast;
+            temp=temp.next;
+            itr=fast;
+        }
+        return dummy.next;
+    }
+}
