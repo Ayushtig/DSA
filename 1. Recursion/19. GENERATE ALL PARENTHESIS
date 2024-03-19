@@ -1,0 +1,28 @@
+import java.util.* ;
+import java.util.ArrayList ;
+import java.io.*; 
+public class Solution {
+    static void generateParenthesis(int open, int close,String s,List<String> a)
+	{
+		if (open == 0 && close == 0) {
+			a.add(s);
+		}
+		if (open > close || open< 0 || close < 0) {
+			return;
+		}
+
+		s += "(";
+		generateParenthesis(open - 1, close, s, a);
+		s = s.substring(0, s.length() - 1);
+
+		s += ")";
+		generateParenthesis(open, close - 1, s, a);
+		s = s.substring(0, s.length() - 1);
+	}
+    public static ArrayList<String> validParenthesis(int n){
+       	ArrayList<String> a = new ArrayList<>();
+		String s = "";
+		generateParenthesis(n, n, s, a);
+		return a;
+    } 
+}
