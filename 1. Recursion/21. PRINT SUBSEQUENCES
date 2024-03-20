@@ -1,0 +1,14 @@
+public class solution {
+	static void solve(int i, String s, String f) {
+	if (i == s.length()) {
+		System.out.println(f);
+		return;
+	}
+	solve(i + 1, s,  f+s.charAt(i));
+	solve(i + 1, s,  f);
+}
+	public static void printSubsequences(String input) {
+	String f = "";
+	solve(0, input, f);
+	}
+}
