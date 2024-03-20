@@ -1,0 +1,17 @@
+import java.util.ArrayList;
+import java.util.List;
+public class Solution {
+    static List<String> print(String s,int i,String f,List<String> a){
+       if(i==s.length()){
+           a.add(f);
+           return a;
+       }
+       print(s,i+1,f+s.charAt(i),a);
+       return print(s,i+1,f,a);
+    }
+    public static List<String> generateSubsequences(String s) {
+        List<String> a=new ArrayList<>();
+        String f="";
+        return print(s,0,f,a);
+    }
+}
