@@ -1,0 +1,17 @@
+import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
+public class Solution {
+    static boolean solve(int i,int k,int a[],int sum,int n){
+        if(k==0)return true;
+        if(i==n || k<0)return false;
+        if(solve(i+1,k-a[i],a,sum+a[i],n))return true;
+        if(solve(i+1,k,a,sum,n))return true;
+        return false;
+    }
+    public static boolean isSubsetPresent(int n, int k,int []a) {
+        return solve(0,k,a,0,n);
+    }
+}
