@@ -1,0 +1,19 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    static void solve(int i,int sum,int num[],int n,ArrayList<Integer>a){
+        if(i==n){
+            a.add(sum);
+            return;
+        }
+        solve(i+1,sum+num[i],num,n,a);
+        solve(i+1,sum,num,n,a);
+    }
+    public static ArrayList<Integer> subsetSum(int num[]) {
+        ArrayList<Integer> a=new ArrayList<>();
+        solve(0,0,num,num.length,a);
+        Collections.sort(a);
+        return a;
+    }
+
+}
