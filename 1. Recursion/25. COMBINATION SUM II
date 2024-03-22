@@ -1,0 +1,23 @@
+import java.util.ArrayList;
+import java.util.*;
+public class Solution {
+     static void findCombinations(int i, ArrayList<Integer> arr, int target, ArrayList < ArrayList < Integer >> ans, ArrayList < Integer > ds) {
+            if (target == 0) {
+                ans.add(new ArrayList < > (ds));
+            return;
+            }
+            for(int j=i;j<arr.size();j++){
+                if(j>i && arr.get(j)==arr.get(j-1))continue;
+                if (arr.get(j) > target) break; 
+            ds.add(arr.get(j));
+            findCombinations(j+1, arr, target - arr.get(j), ans, ds);
+            ds.remove(ds.size() - 1);
+            }
+    }
+    public static ArrayList<ArrayList<Integer>> combinationSum2(ArrayList<Integer> arr, int n, int target){
+        ArrayList <ArrayList < Integer >> ans = new ArrayList < > ();
+        Collections.sort(arr);
+        findCombinations(0, arr, target, ans, new ArrayList < > ());
+        return ans;
+    }
+}
