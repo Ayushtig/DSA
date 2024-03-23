@@ -1,7 +1,22 @@
-String[] keys = {"0","1","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+import java.util.ArrayList;
+import java.util.List;
 
-        List<String> ans = new ArrayList<>();
-
-        solve(0,a,ans,"",keys);
-
-        return ans;
+public class Solution {
+    static void solve(int i,String s,List<String> a,String str,String[] keys){
+        if(i==s.length()) {
+            a.add(str);
+            return;
+        }
+        int cur = s.charAt(i)-'0';
+        String cur_str = keys[cur];
+        for(int j=0;j<cur_str.length();j++){
+              solve(i+1,s,a,str+cur_str.charAt(j),keys);
+        }
+    }
+    public static List<String> letterCombinations(String s) {
+       String[] keys = {"0","1","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        List<String> a = new ArrayList<>();
+        solve(0,s,a,"",keys);
+        return a;
+    }
+}
