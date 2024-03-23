@@ -1,0 +1,7 @@
+String[] keys = {"0","1","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+
+        List<String> ans = new ArrayList<>();
+
+        solve(0,a,ans,"",keys);
+
+        return ans;
