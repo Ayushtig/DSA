@@ -1,0 +1,17 @@
+public class Solution{
+    public static int countSetBits(int n) {
+         if(n==0) return 0;
+        int closestPower = largestPowerToN(n);
+        int setBitsToClosestPower = closestPower*(1<<(closestPower-1));
+        int remainingMSBSum = n-(1<<(closestPower))+1;
+        return setBitsToClosestPower + remainingMSBSum + countSetBits(n-(1<<(closestPower)));
+    }
+    private static int largestPowerToN(int n) {
+        int power = 0;
+        while(n!=0) {
+            power++;
+            n = n >> 1;
+        }
+        return power-1;
+    }
+}
