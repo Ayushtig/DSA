@@ -1,0 +1,16 @@
+public class Solution {
+    public static int[] bitManipulation(int num, int i){
+        int pos;
+        int bitmass=(1<<i-1);
+        if((num&bitmass)==0){
+            pos=0;
+        }
+        else{
+             pos=1;
+        }
+        int set=num|bitmass;
+        int cle=num&~(bitmass);
+        int a[]={pos,set,cle};
+        return a;
+    }
+}
