@@ -1,0 +1,14 @@
+public class Solution {
+    public static int flipBits(int a, int b){
+        int xor=a^b;
+        int count=0;
+        int res=0;
+        while(xor>=(1<<count)){
+            if((xor & (1<<count))!=0){
+                res++;
+            }
+            count++;
+        }
+        return res;
+    }
+}
