@@ -1,0 +1,13 @@
+public class Solution {
+    public static int  xOr(int n){
+        if(n%4 == 0) return n;
+        if(n%4 == 1) return 1;
+        if(n%4 == 2) return n+1;
+        if(n%4 == 3) return 0;
+        return 0;
+    }    
+    public static int findXOR(int l, int r){
+        int ans = xOr(l-1) ^ xOr(r);
+        return ans;   
+    }
+}
