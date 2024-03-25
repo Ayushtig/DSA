@@ -1,0 +1,8 @@
+public class Solution {
+     
+    public static int setBits(int N){
+    int tmp=N&(N+1);
+    if(tmp==0)    return N;
+    return N|(N+1);  
+    }
+}
