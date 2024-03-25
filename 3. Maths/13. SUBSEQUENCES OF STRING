@@ -1,0 +1,25 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+class Solution {
+    static public void subSequence(String s, int i, String res,List<String> ll)
+{
+    if(i>=s.length()) 
+    {
+        if(res.length()>0)
+        ll.add(res);
+        return ;
+    }
+subSequence(s,i+1,res,ll);
+subSequence(s,i+1,res+s.charAt(i),ll);
+}
+    public static ArrayList<String> subsequences(String str) {
+        ArrayList<String> ll=new ArrayList<>();
+        String s="abc";
+        int i=0;
+        String res="";
+        subSequence(str,i,res,ll);
+        return ll;
+    }
+}    
