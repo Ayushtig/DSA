@@ -1,0 +1,21 @@
+public class Solution {
+    public static int[] twoOddNum(int []arr){
+        if(arr.length == 1) return arr;
+        int allXor = 0;
+        for(int i : arr){
+            allXor = allXor^i;
+        }
+        int x = 0,y = 0;
+        int rsbm = allXor & -allXor;
+         for(int i : arr){
+            if((i & rsbm) == 0){
+                x = x^i;
+            }
+            else{
+                y = y^i;
+            }
+        }
+        if(x>y) return new int[] {x,y};
+        else return new int[] {y,x};
+    }
+}
