@@ -1,0 +1,26 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.*;
+
+public class Solution {
+    public static List< Integer > countPrimes(int n) {
+        List<Integer> ans = new ArrayList<>();
+        boolean isP[] = new boolean[n + 1];
+        Arrays.fill(isP, true);
+        isP[0] = false;
+        isP[1] = false;
+
+        for(int i=2; i*i <= n; i++) {
+            for(int j = i*i; j<=n; j+=i) {
+                isP[j] = false;
+            }
+        }
+        for(int i=0; i<n; i++) {
+           if(isP[i] == true) {
+                if((n%i == 0))
+                    ans.add(i);
+           }
+        }
+        return ans;
+    }
+}
