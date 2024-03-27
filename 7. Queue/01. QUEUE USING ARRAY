@@ -1,0 +1,22 @@
+public class Solution {
+    class Queue {
+        int front, rear;
+        int []a;
+        Queue() {
+            front = 0;
+            rear = 0;
+            a = new int[100001];
+        }
+
+        public void enqueue(int e) {
+               a[rear]=e;
+               rear++; 
+        }
+        public int dequeue() {
+            if(front==rear) return -1;
+            int x=a[front];
+            front++;
+            return x;
+        }
+    }
+}
