@@ -1,0 +1,31 @@
+public class Solution{
+    static class Stack {
+        int a[];
+        int size;
+        int top=-1;
+        Stack(int capacity) {
+            a=new int[capacity];
+            this.size=capacity;
+        }
+        public void push(int num) {
+            if(isFull()==1) return;
+            a[++top]=num;
+        }
+        public int pop() {
+            if(isEmpty()==1) return -1;
+            return a[top--];
+        }
+        public int top() {
+            if(top==-1) return -1;
+            return a[top];
+        }
+        public int isEmpty() {
+            if(top==-1) return 1;
+            else return 0;
+        }
+        public int isFull() {
+            if(top+1==size) return 1;
+            else return 0;
+        }
+    }
+}
