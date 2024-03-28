@@ -1,0 +1,49 @@
+public class Solution {
+    static class Stack {
+        static Node head;
+        static int size;
+
+        Stack()
+        {
+            head=null;
+            size=0;
+        }
+
+        int getSize()
+        {
+            return size;
+        }
+
+        boolean isEmpty()
+        {
+            return head==null;
+        }
+
+        void push(int val)
+        {
+            Node temp=new Node(val);
+            temp.next=head;
+            size++;
+            head=temp;
+        }
+
+        void pop()
+        {
+            if(head==null)return;
+            int val=head.data;
+            size--;
+            head=head.next;
+        }
+
+        int getTop()
+        {
+            if(head==null){
+
+               return -1;
+
+           }
+
+           return head.data;
+        }
+    }
+}
