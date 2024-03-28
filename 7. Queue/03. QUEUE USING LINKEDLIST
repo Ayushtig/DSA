@@ -1,0 +1,23 @@
+public class Solution extends Queue{
+    public void push(int x) {
+        
+        Node temp=new Node(x);
+        if(front==null && rear==null){
+            rear=front=temp;
+            return;
+        }
+        rear.next=temp;
+        rear=rear.next;
+    }
+
+    public int pop() {
+        if(front==rear && front==null)return -1;
+        int val=front.data;
+        if(front==rear){
+            front=rear=null;
+            return val;
+        }
+        front=front.next;
+        return val;
+    }
+}
