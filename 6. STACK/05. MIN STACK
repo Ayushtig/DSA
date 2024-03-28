@@ -1,0 +1,41 @@
+import java.util.Stack ;
+import java.io.*; 
+
+public class Solution {
+
+    static class MinStack {
+
+        Stack<Integer> s=new Stack<>();
+        Stack<Integer> min=new Stack<>();
+        
+        MinStack() {
+            // Write your code here.
+        }
+
+        void push(int num) {
+            s.push(num);
+            if(min.isEmpty() || num<=min.peek()){
+                min.push(num);
+            }
+        }
+        int pop() {
+             if (!s.isEmpty()) {
+                int popped = s.pop(); 
+                if (popped == min.peek()) {
+                   min.pop();
+                }
+                return popped;
+            } else {
+                return -1;
+            }
+        }
+        int top() {
+            if(s.isEmpty())return -1;
+            return s.peek();
+        }
+        int getMin() {
+            if(!min.isEmpty()) return min.peek();
+            else return -1;
+        }
+    }
+}
