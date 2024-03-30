@@ -1,0 +1,25 @@
+import java.util.*;
+public class Solution {
+    public static String postfixToPrefix(String exp) {
+        Stack<String> st=new Stack<>();
+        StringBuilder str=new StringBuilder();
+        String s="+-*/";
+        for(int i=0;i<exp.length();i++){
+            char ch=exp.charAt(i);
+            if(s.indexOf(ch)!=-1){
+                String b=st.peek();
+                st.pop();
+                String a=st.peek();
+                st.pop();
+                str.append(String.valueOf(ch));
+                str.append(a);
+                str.append(b);
+                st.push(str.toString());
+                str.setLength(0);
+            }
+            else st.push(String.valueOf(ch));
+        }
+        str.append(st.peek());
+        return str.toString();
+    }
+}
