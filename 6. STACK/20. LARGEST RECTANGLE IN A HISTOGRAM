@@ -1,0 +1,29 @@
+import java.util.ArrayList;
+import java.util.Stack;
+import java.util.*;
+
+public class Solution {
+  public static int largestRectangle(ArrayList < Integer > histo) {
+    int a[]=new int[histo.size()];
+    for(int i=0;i<histo.size();i++){
+      a[i]=histo.get(i);
+    }
+    Stack < Integer > st = new Stack < > ();
+        int maxA = 0;
+        int n = a.length;
+        for (int i = 0; i <= n; i++) {
+            while (!st.empty() && (i == n || a[st.peek()] >= a[i])) {
+                int height = a[st.peek()];
+                st.pop();
+                int width;
+                if (st.empty())
+                    width = i;
+                else
+                    width = i - st.peek() - 1;
+                maxA = Math.max(maxA, width * height);
+            }
+            st.push(i);
+        }
+        return maxA;
+  }
+}
