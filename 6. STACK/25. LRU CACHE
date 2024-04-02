@@ -1,0 +1,46 @@
+import java.util.*;
+import java.util.HashMap;
+public class LRUCache
+{
+    LinkedHashMap<Integer, Integer> m;
+    int capacity;
+    LRUCache(int capacity)
+    {
+        this.capacity = capacity;
+        m=new LinkedHashMap<>();
+    }
+
+    public int get(int key)
+    {
+         int ans = -1;
+
+        if(m.containsKey(key)) {
+
+            ans = m.get(key);
+
+            m.remove(key);
+
+            m.put(key, ans);
+
+        }
+
+        return ans;
+    }
+
+    public void put(int key, int value)
+    {
+         m.remove(key);
+
+        m.put(key, value);
+
+        while(m.size() > capacity) {
+
+            Set<Integer> s = m.keySet();
+
+            int k = s.iterator().next();
+
+            m.remove(k);
+    }
+    }
+}
+ 
