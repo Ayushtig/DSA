@@ -1,0 +1,27 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static int findCelebrity(int n) {
+int i=0,j=n-1;
+		while(i<j){
+			boolean iKnowsj = Runner.knows(i,j);
+			boolean jKnowsi = Runner.knows(j,i);
+			if((iKnowsj && jKnowsi)|| (!iKnowsj && !jKnowsi)){
+				i++;
+				j--;
+			}
+			else if(iKnowsj){
+				i++;
+			}
+			else j--;
+		}
+		//i and j are equal
+		//verifying if our i is celebrity
+		for(int k=0;k<n;k++){
+			if(i==k) continue;
+			if(Runner.knows(i,k)) return -1;
+			if(!Runner.knows(k,i)) return -1;
+		}
+		return i;  
+		  }
+}
