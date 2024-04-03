@@ -1,0 +1,28 @@
+import java.util.HashMap;
+
+public class Solution {
+    public static int countSubstring(String s){
+        int l=0;
+        int r=0;
+        int n=s.length();
+        int max=0;
+        HashMap<Character,Integer> map=new HashMap();
+        while(r<s.length()){
+            char ch=s.charAt(r);
+            map.put(ch,map.getOrDefault(ch,0)+1);
+            while(map.size()>2){
+                char ch1=s.charAt(l);
+                map.put(ch1,map.get(ch1)-1);
+                if(map.get(ch1)==0){
+                    map.remove(ch1);
+                }
+                l++;
+            }
+            max=max+(r-l+1);
+            r++;
+        }
+        int totalsubarrays = (n*(n+1))/2;
+        int ressubarray = totalsubarrays-max;
+        return ressubarray;
+    }
+}
