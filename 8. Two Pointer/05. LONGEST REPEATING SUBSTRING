@@ -1,0 +1,24 @@
+import java.util.HashMap;
+
+public class Solution {
+    public static int longestRepeatingSubstring(String str, int k) {
+        int l=0;
+        int r=0;
+        int max=0;
+        int mf=0;
+        HashMap<Character,Integer> map=new HashMap<>();
+        while(r<str.length()){
+            char ch=str.charAt(r);
+            map.put(ch,map.getOrDefault(ch, 0)+1);
+            mf=Math.max(mf,map.get(ch));
+            while((r-l+1)-mf>k){
+                char ch1=str.charAt(l);
+                map.put(ch1,map.get(ch1)-1);
+                l++;
+            }
+            max=Math.max(max,r-l+1);
+            r++;
+        }
+        return max;
+    }
+}
