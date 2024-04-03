@@ -1,0 +1,32 @@
+import java.util.HashMap; 
+public class Solution {
+	public static int kDistinctChars(int k, String str) {
+		 if(k==0 || str.length()==0)
+        {
+            return 0;
+        }
+ 		int n = str.length();
+        int l  = 0;
+        int r = 0;
+        int max = Integer.MIN_VALUE;
+        HashMap<Character,Integer> map = new HashMap<>();
+        while(r<n)
+        {
+            char ch = str.charAt(r);
+            map.put(ch,map.getOrDefault(ch, 0)+1);
+            while(map.size()>k)
+            {
+                char ch1 = str.charAt(l);
+                map.put(ch1,map.get(ch1)-1);
+                if(map.get(ch1)==0)
+                {
+                   map.remove(ch1);
+                }
+               l++;
+            }
+            max = Math.max(max, r-l+1);
+            r++;
+        }
+        return max;
+		}
+}
