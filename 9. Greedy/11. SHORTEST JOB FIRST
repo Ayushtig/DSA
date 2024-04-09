@@ -1,0 +1,48 @@
+import java.util.Arrays;
+import java.util.PriorityQueue;
+public class Solution {
+    static class Job {
+        int id;
+        int arrival;
+        int burst;
+        Job(int id, int arrival, int burst) {
+            this.id = id;
+            this.arrival = arrival;
+            this.burst = burst;
+        }
+    }
+    public static float sjf(int n, int []arrivalTime, int []burstTime) {
+        if(n <= 1) return 0;
+        Job[] jobs = new Job[n];
+        for(int i=0; i<n; i++) {
+            jobs[i] = new Job(i, arrivalTime[i], burstTime[i]);
+        }
+        Arrays.sort(jobs, (a,b) -> a.arrival - b.arrival);
+        PriorityQueue<Job> readyJobs = new PriorityQueue<Job>((a,b) -> a.burst - b.burst);
+        int totalWaitTime = 0;
+        int currentTime = jobs[0].arrival;
+        int i=0;
+        while(i<n) {
+            while(i<n && currentTime >= jobs[i].arrival) {
+                readyJobs.add(jobs[i]);
+                i++;
+            }
+            if(i<n && readyJobs.isEmpty()) {
+                int nextJobsArrival = jobs[i].arrival;
+                totalWaitTime += (nextJobsArrival - currentTime);
+                currentTime = nextJobsArrival;
+                continue;
+            }
+            Job nextJob = readyJobs.remove();
+            totalWaitTime += (currentTime - nextJob.arrival);
+            currentTime += nextJob.burst;
+        }
+        while(!readyJobs.isEmpty()) {
+            Job nextJob = readyJobs.remove();
+            totalWaitTime +=  (currentTime - nextJob.arrival);
+            currentTime += nextJob.burst;
+        }
+        return (float)totalWaitTime/n;
+    }
+}
+
