@@ -1,0 +1,37 @@
+import java.util.*;
+public class Solution {
+    public static int[] jobScheduling(int [][]a) {
+         Arrays.sort(a, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                if (o1[2] > o2[2])
+                    return -1;
+                else
+                    return 1;
+            }
+        });
+        int n=a.length;
+        int max=0;
+        for(int i=0;i<n;i++){
+            max=Math.max(max,a[i][1]);
+        }
+        int res[]=new int[max+1];
+        Arrays.fill(res,-1);
+        int jobs=0;
+        int prf=0;
+        for(int i=0;i<n;i++){
+            for(int j=a[i][1];j>0;j--){
+                if(res[j]==-1){
+                    res[j]=i;
+                    jobs++;
+                    prf+=a[i][2];
+                    break;
+                }
+            }
+        }
+        int ans[]=new int[2];
+        ans[0]=jobs;
+        ans[1]=prf;
+        return ans;
+    }
+}
