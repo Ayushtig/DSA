@@ -1,0 +1,26 @@
+import java.util.*;
+
+public class Solution {
+public static ArrayList<Interval> mergeIntervals(ArrayList<Interval> intervals) {
+    Collections.sort(intervals, (a,b)-> (a.start-b.start));
+
+         int i = 0;
+         int j = 1;
+
+         while (j<intervals.size()){
+             Interval int1 = intervals.get(i);
+             Interval int2 = intervals.get(j);
+
+             if (int1.end >= int2.start) {
+                 int2.start = Math.min(int2.start,int1.start);
+                 int2.end = Math.max(int2.end,int1.end);
+                 intervals.remove(i);
+             }
+             else {
+                 i++; j++;
+             }
+         }
+
+         return intervals;
+    }
+}
