@@ -1,0 +1,24 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+public class Solution {
+    public static List<Integer> levelOrder(TreeNode<Integer> root){
+        Queue<TreeNode<Integer>> queue=new LinkedList<TreeNode<Integer>>();
+        List<Integer> l=new ArrayList<>();
+        queue.add(root);
+        if(root==null){
+            return l;
+        }
+        while(!queue.isEmpty()){
+            TreeNode<Integer> node = queue.poll();
+            if (node != null) {
+                l.add(node.data);
+                queue.add(node.left);
+                queue.add(node.right);
+            }
+        }
+        return l;
+    }
+}
