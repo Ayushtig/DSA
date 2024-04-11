@@ -1,0 +1,14 @@
+public class Solution {
+    static int check(TreeNode<Integer> root){
+        if(root==null) return 0;
+        int lh=check(root.left);
+        if(lh==-1) return -1;
+        int rh=check(root.right);
+        if(rh==-1) return -1;
+        if(Math.abs(lh-rh)>1) return -1;
+        return 1+Math.max(lh,rh);
+    }
+    public static boolean isBalancedBT(TreeNode<Integer> root) {
+        return check(root)!=-1;
+    }
+}
