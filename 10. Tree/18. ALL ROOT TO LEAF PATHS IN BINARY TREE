@@ -1,0 +1,25 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.*;
+public class Solution {
+    static void check(BinaryTreeNode root,List<String> list,StringBuilder s ){
+        if(root==null) return;
+        s.append(root.data);
+        if(isLead(root)) list.add(s.toString());
+        else{
+            s.append(' ');
+            check(root.left,list,new StringBuilder(s));
+            check(root.right,list,new StringBuilder(s));
+        }
+    }
+    static boolean isLead(BinaryTreeNode root){
+        return ((root.left==null) && (root.right==null));
+    }
+    public static List<String> allRootToLeaf(BinaryTreeNode root) {
+        List<String> list=new ArrayList<>();
+        if(root==null)return list;
+        StringBuilder str=new StringBuilder("");
+        check(root,list,str);
+        return list;
+    }
+}
