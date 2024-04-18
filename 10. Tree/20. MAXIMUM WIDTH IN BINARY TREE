@@ -1,0 +1,52 @@
+import java.util.LinkedList;
+import java.util.*;
+
+public class Solution {    
+    public static int getMaxWidth(TreeNode root) {
+         if (root == null) return 0;
+
+        Queue<TreeNode> queue= new LinkedList();
+
+        queue.offer(root);
+
+        // TreeSet<Integer> l = new TreeSet();
+
+        int max = Integer.MIN_VALUE;
+
+ 
+
+        while(!queue.isEmpty()) {
+
+            int size = queue.size();
+
+            List<Integer> ll = new ArrayList<>();
+
+            for (int i=0;i<size;i++) {
+
+                if (queue.peek().left !=null) {
+
+                    queue.offer(queue.peek().left);
+
+                }
+
+ 
+
+                if (queue.peek().right != null) {
+
+                    queue.offer(queue.peek().right);
+
+                }
+
+                ll.add(queue.poll().val);
+
+            }
+
+            max = Math.max(max,ll.size());
+
+        }
+
+ 
+
+        return max; 
+    } 
+}
