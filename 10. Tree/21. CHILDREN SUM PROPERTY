@@ -1,0 +1,32 @@
+public class Solution {
+    public static boolean isParentSum(Node node) {
+        int left_data = 0, right_data = 0;
+ 
+        /* If node is NULL or it's a leaf node then
+        return true */
+        if (node == null
+            || (node.left == null && node.right == null))
+            return true;
+        else {
+ 
+            /* If left child is not present then 0 is used
+               as data of left child */
+            if (node.left != null)
+                left_data = node.left.data;
+ 
+            /* If right child is not present then 0 is used
+               as data of right child */
+            if (node.right != null)
+                right_data = node.right.data;
+ 
+            /* if the node and both of its children satisfy
+               the property return true else 0*/
+            if ((node.data == left_data + right_data)
+                && (isParentSum(node.left) != false)
+                && isParentSum(node.right) != false)
+                return true;
+            else
+                return false;
+    }
+    }
+}
