@@ -1,0 +1,9 @@
+public class Solution {
+    public static boolean searchInBST(BinaryTreeNode root, int x) {
+        while(root!=null){
+            if(root.data==x) return true;
+            root=x<root.data?root.left:root.right;
+        }
+        return false;
+    }
+}
