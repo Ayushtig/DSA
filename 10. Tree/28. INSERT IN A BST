@@ -1,0 +1,23 @@
+public class Solution {
+    public static TreeNode insertionInBST(TreeNode node, int val) {
+        TreeNode root=node;
+        if(node==null) new TreeNode(val);
+        while(root!=null){
+            if(root.val>val){
+                if(root.left==null){
+                root.left=new TreeNode(val);
+                break;
+                } 
+                root=root.left;
+            }
+            else{
+                if(root.right==null){
+                root.right=new TreeNode(val);
+                break;
+                } 
+                root=root.right;
+            }            
+        }
+        return node;
+    }
+}
