@@ -1,0 +1,32 @@
+import java.util.ArrayList;
+import java.util.List;
+public class Solution {
+    public static List<Integer> predecessorSuccessor(TreeNode root, int key) {
+        List<Integer> list=new ArrayList<>();
+        int pre=-1;
+        TreeNode temp1=root;
+        TreeNode temp2=root;
+        while(temp1!=null){
+            if(temp1.data>=key){
+                temp1=temp1.left;
+            }
+            else{
+                pre=temp1.data;
+                temp1=temp1.right;
+            }
+        }
+        list.add(pre);
+        pre=-1;
+        while(temp2!=null){
+            if(temp2.data<=key){
+                temp2=temp2.right;
+            }
+            else{
+                pre=temp2.data;
+                temp2=temp2.left;
+            }
+        }
+        list.add(pre);
+        return list;
+    }
+}
