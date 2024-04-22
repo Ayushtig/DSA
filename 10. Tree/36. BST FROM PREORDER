@@ -1,0 +1,12 @@
+public class Solution {
+    static TreeNode check(int a[],int ub,int i[]){
+        if(i[0]==a.length || a[i[0]]>ub) return null;
+        TreeNode root=new TreeNode(a[i[0]++]);
+        root.left=check(a,root.data,i);
+        root.right=check(a,ub,i);
+        return root;
+    }
+    public static TreeNode preOrderTree(int[] preOrder) {
+        return check(preOrder,Integer.MAX_VALUE,new int[]{0} );
+    }
+}
