@@ -1,0 +1,49 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.*;
+public class Solution {
+    public static List<Integer> mergeBST(TreeNode root1, TreeNode root2) {
+ BSTIterator itr1 = new BSTIterator(root1);
+        BSTIterator itr2 = new BSTIterator(root2);
+        List<Integer> ans = new ArrayList<>();
+        while(itr1.hasNext() && itr2.hasNext()){
+            int val1 = itr1.peek();
+            int val2 = itr2.peek();
+            if(val1 < val2) ans.add(itr1.next());
+            else ans.add(itr2.next());
+        } 
+        while(itr1.hasNext()){
+            ans.add(itr1.next());
+        }
+        while(itr2.hasNext()){
+            ans.add(itr2.next());
+        }
+        return ans;
+    }
+}
+class BSTIterator{
+    Stack<TreeNode> st;
+    BSTIterator(TreeNode node){
+        st = new Stack<>();
+        pushAll(node);
+    }     
+    public boolean hasNext(){
+        return st.size() > 0;
+    }
+    public int peek(){
+        return st.peek().data;
+    }
+    public int next(){
+        TreeNode node = st.pop();
+        pushAll(node.right);
+        return node.data;
+    }
+    public void pushAll(TreeNode node){
+        TreeNode cur = node;
+        while(cur != null){
+            st.push(cur);
+            cur = cur.left;
+        }
+    }
+}
