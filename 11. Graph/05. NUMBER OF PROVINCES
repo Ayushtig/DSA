@@ -1,0 +1,60 @@
+import java.util.ArrayList;
+import java.util.*;
+
+public class Solution {
+    public static int findNumOfProvinces(int[][] roads, int n) {
+        DisjointSet ds = new DisjointSet(n);
+        
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(roads[i][j] == 1){
+                    if(ds.findParent(i) != ds.findParent(j)){
+                        ds.union(i, j);
+                    }
+                }
+            }
+        }
+        Set<Integer> set = new HashSet();
+        for(int i: ds.parent){
+            set.add(i);
+        }
+        return set.size(); 
+    }
+}
+class DisjointSet {
+    public int[] rank;
+    public int[] parent;
+
+    public DisjointSet(int n){
+        this.rank = new int[n];
+        this.parent = new int[n];
+        for(int i=0;i< n;i++){
+            rank[i] = 0;
+            parent[i] = i; 
+        }
+    }
+
+    public int findParent(int i){
+        if(parent[i] == i)
+            return i;
+         else {
+             int j = parent[i];
+             int p = findParent(j);
+             parent[i] = p;
+             return p;
+         }   
+    }
+
+    public void union(int u, int v){
+        int i = findParent(u);
+        int j = findParent(v);
+        if(rank[i] > rank[j]){
+            parent[j] = i;
+        }else if(rank[i] < rank[j]){
+            parent[i] = j;
+        } else {
+            parent[j] = i;
+            rank[i] = rank[i] + 1;
+        }
+    }
+}
