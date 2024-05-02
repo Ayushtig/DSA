@@ -1,0 +1,35 @@
+import java.util.*;
+public class Solution
+{
+public static int distinctIsland(int [][] arr, int n, int m)
+{
+int[][] vis = new int[n][m];
+Set<ArrayList<ArrayList<Integer>>> st = new HashSet<ArrayList<ArrayList<Integer>>>();
+for(int i = 0; i < n; i++){
+for(int j = 0; j< m; j++){
+if(vis[i][j]==0 && arr[i][j] == 1){
+ArrayList<ArrayList<Integer>> ls = new ArrayList<ArrayList<Integer>>();
+dfs(vis,arr, m,n,i,j,i,j,ls);
+st.add(ls);
+}
+}
+}
+return st.size();
+}
+public static void dfs(int[][] vis,int[][] arr, int m, int n, int row,int col, int baserow, int basecol, ArrayList<ArrayList<Integer>> ls){
+vis[row][col] =1;
+ArrayList<Integer> ar = new ArrayList<>();
+ar.add(row-baserow);
+ar.add(col-basecol);
+ls.add(new ArrayList(ar));
+int dr[]= {0,0,1,-1};
+int dc[] = {1,-1,0,0};
+for(int i = 0;i<4;i++){
+int nrow = row + dr[i];
+int ncol = col + dc[i];
+if(nrow >= 0 && ncol >= 0 && nrow < n && ncol < m && vis[nrow][ncol] == 0 && arr[nrow][ncol] == 1){
+dfs(vis,arr, m,n,nrow, ncol, baserow, basecol, ls);
+}
+}
+}
+}
