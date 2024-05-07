@@ -1,0 +1,21 @@
+import java.util.*;
+public class Solution {
+    static int solve(int n,int a[],int dp[],int k){
+        dp[0]=0;
+        for(int i=1;i<n;i++){
+            int minsteps=Integer.MAX_VALUE;
+            for(int j=1;j<=k;j++){
+            if(i-j>=0){
+            int jump=dp[i-j]+Math.abs(a[i]-a[i-j]);
+            minsteps=Math.min(jump,minsteps);
+            }}
+        dp[i]=minsteps;
+        }
+        return dp[n-1];
+    }
+    public static int minimizeCost(int n, int k, int []a){
+        int dp[]=new int[n];
+        Arrays.fill(dp,-1);
+        return solve(n,a,dp,k);
+    }
+}
